@@ -1,0 +1,40 @@
+.nextTime{
+    border-radius: 1em;
+    background-color: #EDF4FF;
+    border-radius: 0.5em;
+    line-height: 3em;
+}
+.showNumber{
+    display: inline-block;
+    font-size: 2.5em;
+    color: #31558F;
+    width: 1.1em;
+    vertical-align: middle;
+}
+.showUnit{
+    display: inline-block;
+    font-size: 2em;
+    color: #86B4FE;
+    width: 1.5em;
+    vertical-align: middle;
+}
+.nextPlanBox{
+    line-height: 3em;
+    border-radius: 1em;
+    background-color: #31558F;
+}
+
+.nextPlanAfter{
+    display: inline-block;
+    width: 2em;
+    vertical-align: middle;
+    color: #86B4FE;
+    font-size: 2em;
+}
+
+.nextPlan{
+    display: inline-block;
+    font-size: 2.5em;
+    vertical-align: middle;
+    color: #EDF4FF;
+}

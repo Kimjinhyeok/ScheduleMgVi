@@ -1,0 +1,27 @@
+<div class="row text-center">
+  <div *ngIf="passedSchedule">
+    <div class="nextTime col-md-6 col-lg-6">
+      <span *ngIf="leftDay > 0">
+        <span class="showNumber">{{ leftDay }}</span>
+        <span class="showUnit">일</span>
+      </span>
+      <span *ngIf="leftHour > 0">
+        <span class="showNumber">{{ leftHour }}</span>
+        <span class="showUnit">시</span>
+      </span>
+      <span *ngIf="leftMin > 0">
+        <span class="showNumber">{{ leftMin }}</span>
+        <span class="showUnit">분</span>
+      </span>
+      <span class="nextPlanAfter">후에</span>
+    </div>
+    <div class="nextPlanBox col-md-6 col-lg-6">
+      <span class="nextPlan">{{ nextPlan }}</span>
+    </div>
+  </div>
+  <div *ngIf="!passedSchedule">
+    <div class="endcol-md-6 col-lg-6">
+      모든 일정이 끝났습니다. 수고하셨습니다 :D
+    </div>
+  </div>
+</div>

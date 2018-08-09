@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-8">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+      <label>설정 날짜</label>
+      <input type="date" name="setDay" ngModel required>
+      <input type="time" name="setTime" ngModel required>
+      <button type="submit">확인</button>
+    </form>
+  </div>
+</div>

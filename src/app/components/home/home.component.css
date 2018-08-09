@@ -1,0 +1,111 @@
+.row{
+    margin: 10px auto;
+}
+
+label{
+    margin-right: 10px;
+}
+
+.manripo{
+    width: 100%;
+    height: 1050px;
+    border-radius: 0.5em;
+}
+.h1{
+    color: white;
+    width: 100%;
+}
+.rt_block{
+    height: 100%;
+    opacity: 0.8;
+    background-color: black;
+}
+.rt_block::before{
+    clear: both;
+}
+.rt_info{
+    list-style-type: none;
+}
+.info_li label{
+    font-size: 1.2em;
+    text-align: center;
+}
+.info_li{
+    margin-bottom: 10px;
+}
+.rt_box{
+    height: 100%;
+    width: 95%;
+}
+@media ( max-width : 768px){
+    .manripo{
+        background-image: url('../../../assets/images/manripo.jpg');
+        border-radius: 0.5em;
+    }
+    .h1{
+        line-height: 50px;
+
+    }
+    .title{
+        display: block;
+        margin-bottom: 1em;
+    }
+    .rt_block{
+        display: inline-block;
+        width: 100%;
+        border-radius : 0.5em;
+    }
+    .rt_info{
+        font-size: 1.4em;
+        color: #d0d0d0;
+    }
+}
+@media ( min-width : 1024px){
+    .manripo{
+        background-image: url('../../../assets/images/manripo.jpg');
+    }
+    .h1{
+        line-height: 3em;
+    }
+    .rt_block{
+        float: right;
+        width: 50%;
+        border-top-right-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+        transition: width 1s;
+        -webkit-transition: width 1s;
+    }   
+    @keyframes homehover {
+        from { width: 50%;}
+        to { width: 100%;}
+    }
+    @keyframes homeleft {
+        from { width: 100% }
+        to { width: 50% }
+    }
+    .rt_block:hover{
+        width: 100%;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-name: homehover;
+        animation-duration: 1s;
+        animation-name: homehover;
+        border-radius: 0.5em;
+    }
+    .rt_info{
+        font-size: 1.5em;
+        font-weight: 500;
+        color: #d0d0d0;
+    }
+    .info_li{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .info_li:hover{
+        color: white;
+        /* font-size: 1.1em; */
+    }
+}
+
+agm-map{
+    height: 400px;
+}

@@ -1,0 +1,17 @@
+thead th{
+    text-align: center;
+}
+
+tr td:first-child{
+    width: 20%;
+}
+
+.row{
+    margin : 0 auto;
+}
+
+.sc_head{
+    text-align: center;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+}
