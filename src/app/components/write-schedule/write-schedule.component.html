@@ -1,0 +1,52 @@
+<div class="row main">
+    <div class="main-login main-center">
+      <form [formGroup]="formModel" class="" method="post" action="#">
+        <div class="form-group">
+          <label class="cols-sm-2 control-label">날짜</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="date" formControlName="targetDay" class="form-control"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" formArrayName="items" *ngFor="let item of formModel.get('items').controls; let i = index;">
+          <label class="cols-sm-2 control-label">시간 및 일정</label>
+          <div class="cols-sm-10" [formGroupName]="i">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+              <input type="time" formControlName="time" class="form-control"/>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="input" formControlName="plan" class="form-control" placeholder="일정 내용"/>
+              </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-success btn-lg btn-block" (click)="addItem()">추가</button>
+        </div>
+        <div class="form-group ">
+          <button class="btn btn-primary btn-lg btn-block" (click)="showData()">등록</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+<!-- 
+<form [formGroup]="formModel">
+  <div>
+    <input formControlName="targetDay" type="date">
+  </div>
+  <div formArrayName="items" *ngFor="let item of formModel.get('items').controls; let i = index;">
+    <div [formGroupName]="i">
+      <input formControlName="time" type="time">
+      <input formControlName="plan" type="text">
+    </div>
+  </div>
+  <button (click)="addItem()">추가</button>
+  <button (click)="showData()">보기</button>
+</form> 
+-->

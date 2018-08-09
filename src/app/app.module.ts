@@ -11,8 +11,9 @@ import { AgmCoreModule } from '@agm/core';
 import { LiveScheduleComponent } from './components/live-schedule/live-schedule.component';
 import { ScheduleService } from './services/schedule.service';
 import { Http, HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SetTimeComponent } from './components/set-time/set-time.component';
+import { WriteScheduleComponent } from './components/write-schedule/write-schedule.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { SetTimeComponent } from './components/set-time/set-time.component';
     ScheduleComponent,
     HomeComponent,
     LiveScheduleComponent,
-    SetTimeComponent
+    SetTimeComponent,
+    WriteScheduleComponent
   ],
   imports: [
     FormsModule,
@@ -30,7 +32,8 @@ import { SetTimeComponent } from './components/set-time/set-time.component';
     AgmCoreModule.forRoot({
       apiKey : 'AIzaSyB5NG0YrVVjUxMVJ8JihnZYhV7ClcIPiss'
     }),
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
   ],
   providers: [
     ScheduleService
