@@ -34,4 +34,14 @@ export class ScheduleManagerService {
       })
     )
   }
+
+  getSchedules() : Observable<any>{
+    return this.http.get(this.URL+"/all").pipe(
+      map( res => {
+        return res.json();
+      }, err => {
+        throw Error('Error while get All Schedules');
+      })
+    )
+  }
 }

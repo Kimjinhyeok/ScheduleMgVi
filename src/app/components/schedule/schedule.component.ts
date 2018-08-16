@@ -13,7 +13,7 @@ import { LoaderService } from '../../services/loader.service';
 export class ScheduleComponent implements OnInit {
 
   private setDay;
-  private schedule;
+  private schedules;
 
   constructor(route : ActivatedRoute, private scheduleService : ScheduleManagerService
     , private loaderService : LoaderService
@@ -28,15 +28,14 @@ export class ScheduleComponent implements OnInit {
 
   ngOnInit() {
     this.loaderService.display(true);
-    this.scheduleService.getRecentSchedule().subscribe(
+    this.scheduleService.getSchedules().subscribe(
       data => {
-        this.schedule = data.value.schedule as ScheduleVO;
+        this.schedules = data.schedules.value as Array<ScheduleVO>;
       },
       err => {
         console.log('에러 발생 : ' + err.message);
       },() =>{
         this.loaderService.display(false);
-        console.log(this.schedule);
       }
     )
   }
