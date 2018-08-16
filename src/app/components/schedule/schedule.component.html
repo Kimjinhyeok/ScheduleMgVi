@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="!this.loaderService.status.value">
   <div>
     <app-live-schedule [now]="this.setDay"></app-live-schedule>
   </div>
@@ -22,4 +22,14 @@
       </table>
     </div>
   </div>
+</div>
+
+<div class="cssload-wrap" *ngIf="this.loaderService.status.value">
+	<div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<div>Loading...</div>
 </div>

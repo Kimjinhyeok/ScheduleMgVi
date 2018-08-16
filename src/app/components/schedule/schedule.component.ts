@@ -3,6 +3,7 @@ import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { isUndefined } from 'util';
 import { ScheduleManagerService } from '../../services/schedule-manage.service';
 import { ScheduleVO } from '../write-schedule/write-schedule.component';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-schedule',
@@ -14,7 +15,9 @@ export class ScheduleComponent implements OnInit {
   private setDay;
   private schedule;
 
-  constructor(route : ActivatedRoute,private scheduleService : ScheduleManagerService) {
+  constructor(route : ActivatedRoute, private scheduleService : ScheduleManagerService
+    , private loaderService : LoaderService
+  ) {
     route.queryParams.subscribe(
       params =>{
         var recvDate = params['setDay'];
@@ -24,6 +27,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loaderService.display(true);
     this.scheduleService.getRecentSchedule().subscribe(
       data => {
         this.schedule = data.value.schedule as ScheduleVO;
@@ -31,6 +35,7 @@ export class ScheduleComponent implements OnInit {
       err => {
         console.log('에러 발생 : ' + err.message);
       },() =>{
+        this.loaderService.display(false);
         console.log(this.schedule);
       }
     )
