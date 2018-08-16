@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '../../../../node_modules/@angular/forms';
-import { ScheduleSaverService } from '../../services/schedule-saver.service';
+import { ScheduleManagerService } from '../../services/schedule-manage.service';
+
 @Component({
   selector: 'app-write-schedule',
   templateUrl: './write-schedule.component.html',
@@ -11,7 +12,7 @@ export class WriteScheduleComponent implements OnInit {
   formModel : FormGroup;
   items : FormArray;
 
-  constructor(private formBuilder : FormBuilder, private scheduleService : ScheduleSaverService) {
+  constructor(private formBuilder : FormBuilder, private scheduleService : ScheduleManagerService) {
     this.formModel = this.formBuilder.group({
       targetDay : [' ', Validators.required],
       items : this.formBuilder.array([this.createSchedule()])

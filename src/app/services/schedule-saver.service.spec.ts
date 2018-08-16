@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ScheduleSaverService } from './schedule-saver.service';
+import { ScheduleManagerService } from './schedule-manage.service';
 
 describe('ScheduleSaverService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ScheduleSaverService]
+      providers: [ScheduleManagerService]
     });
   });
 
-  it('should be created', inject([ScheduleSaverService], (service: ScheduleSaverService) => {
+  it('should be created', inject([ScheduleManagerService], (service: ScheduleManagerService) => {
     expect(service).toBeTruthy();
   }));
 });
