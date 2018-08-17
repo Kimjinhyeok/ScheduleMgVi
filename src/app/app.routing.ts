@@ -5,13 +5,15 @@ import { HomeComponent } from './components/home/home.component';
 import { SetTimeComponent } from './components/set-time/set-time.component';
 import { ScheduleWriteComponent } from './components/schedule-write/schedule-write.component';
 import { ScheduleManageComponent } from './components/schedule-manage/schedule-manage.component';
+import { ScheduleEditComponent } from './components/schedule-edit/schedule-edit.component';
 
 const routes : Routes = [
     {path : '', component : HomeComponent},
     {path : 'schedule', component : ScheduleComponent},
     {path : 'setday', component : SetTimeComponent},
     {path : 'write', component : ScheduleWriteComponent},
-    {path : 'manage', component : ScheduleManageComponent}
+    {path : 'manage', component : ScheduleManageComponent},
+    {path : 'edit', component : ScheduleEditComponent}
 ]
 
 export const routing = RouterModule.forRoot(routes);

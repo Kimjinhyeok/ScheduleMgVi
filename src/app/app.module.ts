@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SetTimeComponent } from './components/set-time/set-time.component';
 import { ScheduleWriteComponent } from './components/schedule-write/schedule-write.component';
 import { ScheduleManageComponent } from './components/schedule-manage/schedule-manage.component';
+import { ScheduleEditComponent } from './components/schedule-edit/schedule-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { ScheduleManageComponent } from './components/schedule-manage/schedule-m
     LiveScheduleComponent,
     SetTimeComponent,
     ScheduleWriteComponent,
-    ScheduleManageComponent
+    ScheduleManageComponent,
+    ScheduleEditComponent
   ],
   imports: [
     FormsModule,

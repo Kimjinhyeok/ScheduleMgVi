@@ -5,6 +5,9 @@ import { ScheduleVO } from '../schedule-write/schedule-write.component';
 import { DatePipe } from '@angular/common';
 import { LoaderService } from '../../services/loader.service';
 
+import { ScheduleEditComponent } from '../schedule-edit/schedule-edit.component';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-schedule-manage',
   templateUrl: './schedule-manage.component.html',
@@ -16,11 +19,13 @@ import { LoaderService } from '../../services/loader.service';
 export class ScheduleManageComponent implements OnInit {
 
   private formModel : FormGroup;
-  // private scArray : Array<ScheduleVO>;
   private schedules : FormArray;
+  private scheduleArray;
+
   constructor(private fb : FormBuilder, 
     private scheduleMgService : ScheduleManagerService,
-    private loaderService : LoaderService) {
+    private loaderService : LoaderService,
+    private router : Router) {
     this.formModel = this.fb.group({
       schedules : this.fb.array([])
     });
@@ -43,8 +48,8 @@ export class ScheduleManageComponent implements OnInit {
   loadSchedules(){
     this.scheduleMgService.getSchedules().subscribe(
       (data) => {
-        var scArray = data.schedules.value;
-        scArray.forEach(sc => {
+        this.scheduleArray = data.schedules.value;
+        this.scheduleArray.forEach(sc => {
           this.addItem(sc);
         });
         
@@ -64,7 +69,10 @@ export class ScheduleManageComponent implements OnInit {
   }
 
   onClickEdit(event, groupName){
-    console.log(event);
+    var schedule = this.scheduleArray[groupName];
+    this.router.navigate(['/edit', {
+      schedule : JSON.stringify(schedule)
+    }])
   }
 
   onClickRemove(event, groupName){

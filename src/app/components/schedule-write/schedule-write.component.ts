@@ -70,13 +70,12 @@ export class ScheduleWriteComponent implements OnInit {
 
 export class ScheduleVO{
 
+  private id;
   private targetDay : Date;
   private plans : Array<PlanVO>;
-  private createDay : Date;
 
   constructor(){
     this.plans = new Array();
-    this.createDay = new Date();
   }
 
   setDay(day : any){
@@ -93,6 +92,10 @@ export class ScheduleVO{
   }
 
   getPlans() : Array<PlanVO>{return this.plans}
+
+  getID(){
+    return this.id;
+  }
 }
 
 export class PlanVO{
