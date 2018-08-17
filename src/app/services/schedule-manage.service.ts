@@ -50,11 +50,11 @@ export class ScheduleManagerService {
     return this.http.put(this.URL+`/${schedule._id}`, {
       params : schedule
     }).pipe(map( 
-      (res) => {
-        console.log('수정완료');
+      (res : any) => {
+        return res.json();
       },
       (err) => {
-
+        throw Error(err);
       })
     )
   }

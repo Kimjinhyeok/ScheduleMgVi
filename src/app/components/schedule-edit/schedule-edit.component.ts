@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ScheduleVO, PlanVO } from '../schedule-write/schedule-write.component';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ScheduleManagerService } from '../../services/schedule-manage.service';
 
@@ -17,7 +17,8 @@ export class ScheduleEditComponent implements OnInit {
 
   private schedule;
 
-  constructor(private fb : FormBuilder, router : ActivatedRoute, private scheduleService : ScheduleManagerService) {
+  constructor(private fb : FormBuilder, router : ActivatedRoute, 
+    private scheduleService : ScheduleManagerService, private naviRouter : Router) {
     this.formModel = this.fb.group({
       targetDay : ['', Validators.required],
       items : this.fb.array([])
@@ -71,7 +72,10 @@ export class ScheduleEditComponent implements OnInit {
     });
     this.scheduleService.updateSchedule(this.schedule).subscribe(
       (res) => {
-        console.log('수정 성공')
+        console.log('수정 성공');
+        if(res.data){
+          this.naviRouter.navigate(['/manage']);
+        }
       },
       (err) => {
 
