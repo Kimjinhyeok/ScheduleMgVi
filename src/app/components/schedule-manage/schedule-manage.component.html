@@ -1,0 +1,42 @@
+<div class="row" *ngIf="!this.loaderService.status.value">
+  <div class="col-md-10 col-lg-10">
+    <form [formGroup]="formModel" action="#">
+      <div class="subjects">
+        <div class="subject">생성일</div>
+        <div class="subject">지정일</div>
+        <div class="subject">주석</div>
+        <div class="subject">수정·삭제</div>
+      </div>
+      <div class="form-group" formArrayName="schedules" *ngFor="let sc of formModel.get('schedules').controls; let i = index">
+        <div [formGroupName]="i">
+          <div class="form-unit">
+              <input type="date" formControlName="targetDay" class="form-control" readonly>
+          </div>
+          <div class="form-unit">
+              <input type="date" formControlName="createDay" class="form-control" readonly>
+          </div>
+          <div class="form-unit">
+              <input type="text" formControlName="annotation" class="form-control">
+          </div>
+          <div class="form-unit buttons">
+            <span class=""><i class="fa fa-edit" (click)="onClickEdit($event, i)"></i></span>
+            <span class=""><i class="fa fa-trash" (click)="onClickRemove($event, i)"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="save col-md-5 col-lg-5">
+        <button class="btn btn-success">저장</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="cssload-wrap" *ngIf="this.loaderService.status.value">
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>Loading...</div>
+  </div>

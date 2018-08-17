@@ -1,0 +1,42 @@
+.subjects{
+    width: 100%;
+    margin-bottom: 1em;
+}
+.subject{
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+}
+.form-group{
+    text-align: center;
+}
+.form-unit{
+    width: 25%;
+    display: inline-block;
+}
+
+.buttons{
+    font-size: 1.5em;
+    text-align: center; 
+}
+
+.buttons span{
+    margin: 5%;
+}
+
+input{
+    text-align: center;
+}
+input:-moz-read-only { /* For Firefox */
+    background-color: #f0f8ff;
+    
+}
+
+input:read-only {
+    background-color:#f0f8ff;
+}
+
+.save{
+    text-align: center;
+    margin: 0 auto;
+}

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WriteScheduleComponent } from './write-schedule.component';
+import { ScheduleManageComponent } from './schedule-manage.component';
 
-describe('WriteScheduleComponent', () => {
-  let component: WriteScheduleComponent;
-  let fixture: ComponentFixture<WriteScheduleComponent>;
+describe('ScheduleManageComponent', () => {
+  let component: ScheduleManageComponent;
+  let fixture: ComponentFixture<ScheduleManageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WriteScheduleComponent ]
+      declarations: [ ScheduleManageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WriteScheduleComponent);
+    fixture = TestBed.createComponent(ScheduleManageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

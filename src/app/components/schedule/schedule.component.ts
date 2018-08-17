@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { isUndefined } from 'util';
 import { ScheduleManagerService } from '../../services/schedule-manage.service';
-import { ScheduleVO } from '../write-schedule/write-schedule.component';
+import { ScheduleVO } from '../schedule-write/schedule-write.component';
 import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.css']
+  styleUrls: [
+    './schedule.component.css',
+    '../../../assets/css/loader.css'
+  ]
 })
 export class ScheduleComponent implements OnInit {
 
@@ -39,5 +42,6 @@ export class ScheduleComponent implements OnInit {
       }
     )
   }
+  
 
 }

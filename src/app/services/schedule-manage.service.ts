@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ScheduleVO } from '../components/schedule-write/schedule-write.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +39,7 @@ export class ScheduleManagerService {
   getSchedules() : Observable<any>{
     return this.http.get(this.URL+"/all").pipe(
       map( res => {
-        return res.json();
+        return res.json() as Array<ScheduleVO>;
       }, err => {
         throw Error('Error while get All Schedules');
       })

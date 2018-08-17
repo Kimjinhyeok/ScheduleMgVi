@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, Validators } from '../../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms'
 import { ScheduleManagerService } from '../../services/schedule-manage.service';
 
 @Component({
   selector: 'app-write-schedule',
-  templateUrl: './write-schedule.component.html',
-  styleUrls: ['./write-schedule.component.css']
+  templateUrl: './schedule-write.component.html',
+  styleUrls: ['./schedule-write.component.css']
 })
-export class WriteScheduleComponent implements OnInit {
+export class ScheduleWriteComponent implements OnInit {
 
   formModel : FormGroup;
   items : FormArray;

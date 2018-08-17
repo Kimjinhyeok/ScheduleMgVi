@@ -10,10 +10,11 @@ import { HomeComponent } from './components/home/home.component';
 import { AgmCoreModule } from '@agm/core';
 import { LiveScheduleComponent } from './components/live-schedule/live-schedule.component';
 import { ScheduleService } from './services/schedule.service';
-import { Http, HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SetTimeComponent } from './components/set-time/set-time.component';
-import { WriteScheduleComponent } from './components/write-schedule/write-schedule.component';
+import { ScheduleWriteComponent } from './components/schedule-write/schedule-write.component';
+import { ScheduleManageComponent } from './components/schedule-manage/schedule-manage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { WriteScheduleComponent } from './components/write-schedule/write-schedu
     HomeComponent,
     LiveScheduleComponent,
     SetTimeComponent,
-    WriteScheduleComponent
+    ScheduleWriteComponent,
+    ScheduleManageComponent
   ],
   imports: [
     FormsModule,
