@@ -58,4 +58,17 @@ export class ScheduleManagerService {
       })
     )
   }
+
+  removeSchedule(id) : Observable<any>{
+    return this.http.delete(`${this.URL}/${id}`).pipe(
+      map(
+        (res) => {
+          return res.json();
+        },
+        (err) => {
+          throw Error(err);
+        }
+      )
+    )
+  }
 }

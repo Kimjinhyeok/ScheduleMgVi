@@ -68,14 +68,29 @@ export class ScheduleManageComponent implements OnInit {
     this.schedules.push(this.createScheduleUnit(data));
   }
 
-  onClickEdit(event, groupName){
+  onClickEdit(groupName){
     var schedule = this.scheduleArray[groupName];
     this.router.navigate(['/edit', {
       schedule : JSON.stringify(schedule)
     }])
   }
 
-  onClickRemove(event, groupName){
+  onClickRemove(groupName){
+    var scheduleID = this.scheduleArray[groupName]._id;
+    
+    this.scheduleMgService.removeSchedule(scheduleID)
+      .subscribe( (res) => {
+        console.log('삭제 성공');
 
+        this.dynamicRemoveFromControl(groupName);
+      }, (err) => {
+        console.log('실패...?' + err);
+      });
+  }
+
+  dynamicRemoveFromControl(groupName){
+    var scheduleItems = this.formModel.get('schedules') as FormArray;
+    scheduleItems.removeAt(groupName);
+    delete this.scheduleArray[groupName];
   }
 }
