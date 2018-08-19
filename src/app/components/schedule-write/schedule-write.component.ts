@@ -14,7 +14,8 @@ export class ScheduleWriteComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder, private scheduleService : ScheduleManagerService) {
     this.formModel = this.formBuilder.group({
-      targetDay : [' ', Validators.required],
+      targetDay : [null, Validators.required],
+      descript : [null, Validators.required],
       items : this.formBuilder.array([this.createSchedule()])
     });
   }
@@ -25,8 +26,8 @@ export class ScheduleWriteComponent implements OnInit {
 
   createSchedule() : FormGroup{
     return this.formBuilder.group({
-      time : [' ', Validators.required],
-      plan : [' ', Validators.required]
+      time : [null, Validators.required],
+      plan : [null, Validators.required]
     });
   }
 
@@ -35,17 +36,24 @@ export class ScheduleWriteComponent implements OnInit {
     this.items.push(this.createSchedule());
   }
 
-  saveSchedule(){
-    var scheduleVO = new ScheduleVO();
-    var items = this.formModel.get('items') as FormArray;
-    var targetDay = this.formModel.get('targetDay').value;
-    var planArray = new Array<PlanVO>();
+  saveSchedule(event){
+    // event.preventDefault();
 
-    scheduleVO.setDay(targetDay);
-    for(let el of items.controls){
+    if(this.formModel.valid){
+      console.log('good')
+    }else{
+      console.log('what the....'); return;
+    }
+    var formValue = this.formModel.value;
+    var scheduleVO = new ScheduleVO(formValue);
+
+    var planArray = new Array<PlanVO>();
+    var items = formValue.items;
+
+    for(let el of items){
       planArray.push(new PlanVO(
-        el.get('time').value,
-        el.get('plan').value
+        el.time,
+        el.plan
       ))
     }
     // Sort Plans by Times
@@ -53,8 +61,6 @@ export class ScheduleWriteComponent implements OnInit {
       console.log(a.time + "\t" + b.time);
       return a.time.localeCompare(b.time);
     });
-    
-    scheduleVO.setPlans(planArray);
 
     console.log(scheduleVO);
     this.scheduleService.sendNewSchedule(scheduleVO).subscribe(
@@ -72,10 +78,13 @@ export class ScheduleVO{
 
   private id;
   private targetDay : Date;
+  private descript : String;
   private plans : Array<PlanVO>;
 
-  constructor(){
-    this.plans = new Array();
+  constructor(obj? : ScheduleVO){
+    this.targetDay = obj.targetDay;
+    this.descript = obj.descript;
+    this.id = obj.id;
   }
 
   setDay(day : any){
@@ -95,6 +104,10 @@ export class ScheduleVO{
 
   getID(){
     return this.id;
+  }
+
+  getDescript(){
+    this.descript;
   }
 }
 

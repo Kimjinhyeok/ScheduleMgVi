@@ -13,14 +13,15 @@ import { ScheduleManagerService } from '../../services/schedule-manage.service';
 export class ScheduleEditComponent implements OnInit {
 
   private formModel : FormGroup;
-  private items : FormArray;
+  private items : FormArray = null;
 
   private schedule;
 
   constructor(private fb : FormBuilder, router : ActivatedRoute, 
     private scheduleService : ScheduleManagerService, private naviRouter : Router) {
     this.formModel = this.fb.group({
-      targetDay : ['', Validators.required],
+      targetDay : [null, Validators.required],
+      descript : [null, Validators.required],
       items : this.fb.array([])
     });
     this.schedule = router.snapshot.paramMap.get('schedule');
@@ -31,7 +32,8 @@ export class ScheduleEditComponent implements OnInit {
     var dp = new DatePipe('en-US');
     this.formModel.setValue({
       targetDay : dp.transform(this.schedule.targetDay, 'yyyy-MM-dd'),
-      items : [] 
+      descript : this.schedule.descript,
+      items : []
     });
 
     this.schedule.plans.forEach(el => {
@@ -41,8 +43,8 @@ export class ScheduleEditComponent implements OnInit {
 
   createSchedule(vo?) : FormGroup{
     var el = this.fb.group({
-      time : ['', Validators.required],
-      plan : ['', Validators.required]
+      time : [null, Validators.required],
+      plan : [null, Validators.required]
     });
     if(vo != null){
       el.setValue({
@@ -58,7 +60,8 @@ export class ScheduleEditComponent implements OnInit {
     this.items.push(this.createSchedule(data));
   }
 
-  saveSchedule(){
+  saveSchedule(event){
+    event.preventDefault();
     var formValues = this.formModel.value;
     var arr = formValues.items;
     arr.sort((a, b) => {

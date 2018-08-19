@@ -41,7 +41,7 @@ export class ScheduleManageComponent implements OnInit {
     return this.fb.group({
       targetDay : [dp.transform(schedule.targetDay, "yyyy-MM-dd")],
       createDay : [dp.transform(schedule.createDay, "yyyy-MM-dd")],
-      annotation : ['']
+      descript : [schedule.descript]
     });
   }
 

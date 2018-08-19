@@ -1,35 +1,43 @@
 <div class="row main">
     <div class="main-login main-center">
-      <form [formGroup]="formModel" class="" method="post" action="#">
+      <form [formGroup]="formModel" (ngSubmit)="saveSchedule($event)"  novalidate>
         <div class="form-group">
           <label class="cols-sm-2 control-label">날짜</label>
           <div class="cols-sm-10">
             <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
               <input type="date" formControlName="targetDay" class="form-control"/>
             </div>
           </div>
         </div>
-
+        <div class="form-group">
+          <label class="cols-sm-2 control-label">설명</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-sticky-note" aria-hidden="true"></i></span>
+              <input type="text" formControlName="descript" class="form-control"/>
+            </div>
+          </div>
+        </div>
         <div class="form-group" formArrayName="items" *ngFor="let item of formModel.get('items').controls; let i = index;">
           <label class="cols-sm-2 control-label">시간 및 일정</label>
           <div class="cols-sm-10" [formGroupName]="i">
             <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+              <span class="input-group-addon"><i class="fa fa-clock-o " aria-hidden="true"></i></span>
               <input type="time" formControlName="time" class="form-control"/>
             </div>
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <span class="input-group-addon"><i class="fa fa-play" aria-hidden="true"></i></span>
                 <input type="input" formControlName="plan" class="form-control" placeholder="일정 내용"/>
               </div>
           </div>
         </div>
 
         <div class="form-group">
-          <button class="btn btn-success btn-lg btn-block" (click)="addItem()">추가</button>
+          <button type="button" class="btn btn-success btn-lg btn-block" (click)="addItem()">추가</button>
         </div>
         <div class="form-group ">
-          <button class="btn btn-primary btn-lg btn-block" (click)="saveSchedule()">등록</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">등록</button>
         </div>
         
       </form>
