@@ -32,6 +32,9 @@
             
           },
           "configurations": {
+            "local" : {
+              "deployUrl": "http://localhost:4200/"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -54,7 +57,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "my-app:build"
+            "browserTarget": "my-app:build:local",
+            "port": 4200,
+            "servePath": "/"
           },
           "configurations": {
             "production": {
