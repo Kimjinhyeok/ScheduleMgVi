@@ -80,7 +80,7 @@ export class ScheduleEditComponent implements OnInit {
       (res) => {
         console.log('수정 성공');
         if(res.data){
-          this.naviRouter.navigate(['/manage']);
+          this.naviRouter.navigate(['/schedule/manage']);
         }
       },
       (err) => {

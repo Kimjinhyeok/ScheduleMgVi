@@ -4,41 +4,31 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './components/application/app.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { routing } from './app.routing';
-import { ScheduleComponent } from './components/schedule/schedule.component';
+import { AppRoutingModule } from './routers/app.routing';
 import { HomeComponent } from './components/home/home.component';
 import { AgmCoreModule } from '@agm/core';
 import { LiveScheduleComponent } from './components/live-schedule/live-schedule.component';
-import { ScheduleService } from './services/schedule.service';
 import { HttpModule } from '@angular/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ScheduleWriteComponent } from './components/schedule-write/schedule-write.component';
-import { ScheduleManageComponent } from './components/schedule-manage/schedule-manage.component';
-import { ScheduleEditComponent } from './components/schedule-edit/schedule-edit.component';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
     NaviComponent,
     FooterComponent,
-    ScheduleComponent,
     HomeComponent,
     LiveScheduleComponent,
-    ScheduleWriteComponent,
-    ScheduleManageComponent,
-    ScheduleEditComponent
   ],
   imports: [
-    FormsModule,
+    CommonModule,
     BrowserModule,
-    routing,
+    AppRoutingModule,
+    HttpModule,
     AgmCoreModule.forRoot({
       apiKey : 'AIzaSyB5NG0YrVVjUxMVJ8JihnZYhV7ClcIPiss'
-    }),
-    HttpModule,
-    ReactiveFormsModule
+    })
   ],
   providers: [
-    ScheduleService
   ],
   bootstrap: [AppComponent]
 })

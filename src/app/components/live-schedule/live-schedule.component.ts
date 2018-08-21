@@ -80,6 +80,8 @@ export class LiveScheduleComponent implements OnInit {
           this.scheduleArray.push(sch);
         }
       });
+    }else{
+      this.scheduleArray.push(arr[0]);
     }
     
   }

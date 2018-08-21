@@ -70,7 +70,7 @@ export class ScheduleManageComponent implements OnInit {
 
   onClickEdit(groupName){
     var schedule = this.scheduleArray[groupName];
-    this.router.navigate(['/edit', {
+    this.router.navigate(['/schedule/edit', {
       schedule : JSON.stringify(schedule)
     }])
   }
