@@ -10,6 +10,7 @@ import { AgmCoreModule } from '@agm/core';
 import { LiveScheduleComponent } from './components/live-schedule/live-schedule.component';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { ErrorHandleComponent } from './components/error-handle/error-handle.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     HomeComponent,
     LiveScheduleComponent,
+    ErrorHandleComponent,
   ],
   imports: [
     CommonModule,
