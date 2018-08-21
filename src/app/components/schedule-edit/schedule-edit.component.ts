@@ -62,6 +62,9 @@ export class ScheduleEditComponent implements OnInit {
 
   saveSchedule(event){
     event.preventDefault();
+    if(!this.formModel.valid){
+      return;
+    }
     var formValues = this.formModel.value;
     var arr = formValues.items;
     arr.sort((a, b) => {

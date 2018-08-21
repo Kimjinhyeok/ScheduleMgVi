@@ -12,7 +12,6 @@ import { LiveScheduleComponent } from './components/live-schedule/live-schedule.
 import { ScheduleService } from './services/schedule.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SetTimeComponent } from './components/set-time/set-time.component';
 import { ScheduleWriteComponent } from './components/schedule-write/schedule-write.component';
 import { ScheduleManageComponent } from './components/schedule-manage/schedule-manage.component';
 import { ScheduleEditComponent } from './components/schedule-edit/schedule-edit.component';
@@ -24,7 +23,6 @@ import { ScheduleEditComponent } from './components/schedule-edit/schedule-edit.
     ScheduleComponent,
     HomeComponent,
     LiveScheduleComponent,
-    SetTimeComponent,
     ScheduleWriteComponent,
     ScheduleManageComponent,
     ScheduleEditComponent

@@ -62,7 +62,8 @@ export class ScheduleWriteComponent implements OnInit {
       return a.time.localeCompare(b.time);
     });
 
-    console.log(scheduleVO);
+    scheduleVO.setPlans(planArray);
+    
     this.scheduleService.sendNewSchedule(scheduleVO).subscribe(
       data => {
         console.log(data);
@@ -85,13 +86,14 @@ export class ScheduleVO{
     this.targetDay = obj.targetDay;
     this.descript = obj.descript;
     this.id = obj.id;
+    this.plans = obj.plans;
   }
 
   setDay(day : any){
    this.targetDay = day;
   }
 
-  getDay(){ return this.targetDay;}
+  getTargetDay(){ return this.targetDay;}
 
   setPlans(arr : Array<PlanVO>){
     this.plans = arr;

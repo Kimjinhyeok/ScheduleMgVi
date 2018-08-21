@@ -7,6 +7,8 @@ import { map } from 'rxjs/operators/';
 })
 export class ScheduleService {
 
+  private URL = "http://localhost:3000/schedule";
+
   constructor(private http : Http) { }
 
   getSchedules() : Observable<any>{
@@ -15,5 +17,17 @@ export class ScheduleService {
     .pipe(map((res : Response) => {
       return res.json();
     }))
+  }
+
+  getActivateSchedules() : Observable<any>{
+    return this.http.get(this.URL+"/activate")
+    .pipe(map(
+      (res, idx) => {
+        return res.json();
+      },
+      (err) => {
+        throw Error(err);
+      }
+    ))
   }
 }

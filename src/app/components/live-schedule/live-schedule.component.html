@@ -1,5 +1,5 @@
 <div class="row text-center">
-  <div *ngIf="passedSchedule">
+  <div *ngIf="activate">
     <div class="nextTime col-md-6 col-lg-6">
       <span *ngIf="leftDay > 0">
         <span class="showNumber">{{ leftDay }}</span>
@@ -16,10 +16,10 @@
       <span class="nextPlanAfter">후에</span>
     </div>
     <div class="nextPlanBox col-md-6 col-lg-6">
-      <span class="nextPlan">{{ nextPlan }}</span>
+      <span class="nextPlan">{{ nextPlan.plan }}</span>
     </div>
   </div>
-  <div *ngIf="!passedSchedule">
+  <div *ngIf="!activate">
     <div class="endcol-md-6 col-lg-6">
       모든 일정이 끝났습니다. 수고하셨습니다 :D
     </div>
