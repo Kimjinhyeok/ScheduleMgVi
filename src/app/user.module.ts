@@ -1,24 +1,26 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { UserRoutingModule } from "./routers/user-routing.module";
-import { UserRegisterMainComponent } from "./components/user-register/user-register-main/user-register-main.component";
-import { UserRegisterPrivacyComponent } from "./components/user-register/user-register-privacy/user-register-privacy.component";
-import { UserRegisterPublicComponent } from "./components/user-register/user-register-public/user-register-public.component";
+import { UserRegisterMainComponent } from "./components/user-register-main/user-register-main.component";
 import { HttpModule } from "@angular/http";
-import { HttpClient } from "selenium-webdriver/http";
+import { ReactiveFormsModule } from "@angular/forms";
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { AuthService } from "./services/auth.service";
 
 @NgModule({
     imports : [
         CommonModule,
+        ReactiveFormsModule,
         UserRoutingModule,
-        HttpClient
+        HttpModule
     ],
     declarations : [
         UserRegisterMainComponent,
-        UserRegisterPrivacyComponent,
-        UserRegisterPublicComponent
+        UserLoginComponent,
     ],
-    providers : []
+    providers : [
+        AuthService
+    ]
 })
 
 export class UserModule{}

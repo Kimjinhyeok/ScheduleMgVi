@@ -126,6 +126,9 @@ export class LiveScheduleComponent implements OnInit {
         this.adaptedPlanNum = idx;
       }
     });
+    if(this.nextPlan == null){
+      return;
+    }
     this.setDayHourMin(this.now, this.nextPlanTime);
   }
 

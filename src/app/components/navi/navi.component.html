@@ -7,21 +7,23 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" routerLink=''>캠퍼스 여름 수양회</a>
+			<a class="navbar-brand" routerLink='./'>캠퍼스 여름 수양회</a>
 		</div>
 
 		<!-- 네비게이션 링크 -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarSupportedContent">
 			<ul class="nav navbar-nav">
-				<li><a routerLink='/schedule'>일정</a></li>
+				<li><a routerLink='./schedule'>일정</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">일정관리
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu nav">
-						<li><a routerLink='/schedule/write'>일정작성</a></li>
-						<li><a routerLink='/schedule/manage'>일정변경</a></li>
+						<li><a routerLink='./schedule/write'>일정작성</a></li>
+						<li><a routerLink='./schedule/manage'>일정변경</a></li>
 					</ul>
 				</li>
+				<li><a routerLink='./user/register'>회원가입</a></li>
+				<li><a routerLink="./user/login">로그인</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
