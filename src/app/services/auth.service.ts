@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { throwError, Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,11 @@ export class AuthService {
     }).pipe(map(
       (res) => {
         return res.json().id.id;
-      },
-      (err) => {
-        throw Error(err);
-      }
-    ))
+      }),
+      catchError(err => {
+        var errMessage = err.json().message;
+        return throwError(errMessage);
+      })
+    )
   }
 }

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class UserLoginComponent implements OnInit {
 
+  private errMessage = null;
   private formModel: FormGroup;
   constructor(private authService: AuthService, private route: Router) {
     this.formModel = new FormGroup({
@@ -36,7 +37,7 @@ export class UserLoginComponent implements OnInit {
         }
       },
       (err) => {
-
+        this.errMessage = err;
       }
     )
   }

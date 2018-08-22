@@ -22,8 +22,8 @@
 						<li><a routerLink='./schedule/manage'>일정변경</a></li>
 					</ul>
 				</li>
-				<li><a routerLink='./user/register'>회원가입</a></li>
-				<li><a routerLink="./user/login">로그인</a></li>
+				<li *ngIf="!isLogin"><a routerLink='./user/register'>회원가입</a></li>
+				<li *ngIf="!isLogin"><a routerLink="./user/login">로그인</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

@@ -11,7 +11,7 @@ import { LiveScheduleComponent } from './components/live-schedule/live-schedule.
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { ErrorHandleComponent } from './components/error-handle/error-handle.component';
-import { NotfoundComponent } from './components/notfound/notfound.component';
+import { NotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [

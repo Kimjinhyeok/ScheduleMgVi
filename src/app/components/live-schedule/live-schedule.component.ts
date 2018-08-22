@@ -44,8 +44,12 @@ export class LiveScheduleComponent implements OnInit {
           return; // interval을 진행할 필요가 없엉
         }
         this.setSchedulesAndSortTargetday(res.data);
-        this.intializeNextPlan();
-        this.runInterval();
+        if(this.intializeNextPlan()){
+          this.setDayHourMin(this.now, this.nextPlanTime);
+          this.runInterval();
+        }else{
+          this.activate = false;
+        }
       },
       err => {
         console.error("Fail to load data" + err);
@@ -127,9 +131,10 @@ export class LiveScheduleComponent implements OnInit {
       }
     });
     if(this.nextPlan == null){
-      return;
+      return false;
+    }else{
+      return true;
     }
-    this.setDayHourMin(this.now, this.nextPlanTime);
   }
 
   runInterval(){

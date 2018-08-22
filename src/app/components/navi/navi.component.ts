@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-navi',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaviComponent implements OnInit {
 
-  constructor() { }
+  private isLogin : boolean;
+  constructor() { 
+    this.isLogin = false;
+  }
 
   ngOnInit() {
+    var userID = sessionStorage.getItem('id');
+    if(userID){
+      this.isLogin = true;
+    }
   }
 
 }
