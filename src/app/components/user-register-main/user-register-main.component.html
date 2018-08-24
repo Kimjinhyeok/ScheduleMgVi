@@ -1,13 +1,13 @@
 <div class="row main">
   <div class="main-login main-center">
     <h5>개인용 회원가입</h5>
-    <form class="" method="post" action="#" [formGroup]="formModel" novalidate (ngSubmit)="formModel.valid && onRegister()">
+    <form class="" method="post" action="#" [formGroup]="formModel" novalidate (ngSubmit)="onRegister()">
       <div class="form-group">
         <label for="type" class="cols-sm-2 control-label">구분</label>
         <div class="cols-sm-10">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-shield" aria-hidden="true"></i></span>
-            <div class="selector-group">
+            <div class="selector-group form-control">
               <div class="selector-item">
                 <input type="radio" formControlname="type" name="type-selector" value="privacy" checked/>
                 <span>개인</span>
@@ -26,37 +26,39 @@
         <div class="cols-sm-10">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" formControlName="name" placeholder="Enter your Name" required/>
+            <input type="text" class="form-control" name="name" formControlName="name" placeholder="Enter your Name" required max="12" min="2"/>
           </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="password" class="cols-sm-2 control-label">비밀번호</label>
-        <div class="cols-sm-10">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-            <input type="password" class="form-control" name="password" formControlName="pw" placeholder="Enter your Password" required/>
+      <div formGroupName="passwordsGroup">
+        <div class="form-group">
+          <label for="password" class="cols-sm-2 control-label">비밀번호</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+              <input type="password" class="form-control" name="password" formControlName="pw" required maxlength="20" minlength="6"/>
+            </div>
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="confirm" class="cols-sm-2 control-label">비밀번호 확인</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+              <input type="password" class="form-control" name="confirm" formControlName="confirm" required maxlength="20" minlength="6"/>
+            </div>
+            
+            <span [hidden]="!formModel.hasError('equal', 'passwordsGroup')">암호 안맞아요 ㅡㅡ</span>
           </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="confirm" class="cols-sm-2 control-label">비밀번호 확인</label>
-        <div class="cols-sm-10">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-            <input type="password" class="form-control" name="confirm" formControlName="confirm" placeholder="Confirm your Password" required/>
-          </div>
-        </div>
-      </div>
-
       <div class="form-group">
         <label for="email" class="cols-sm-2 control-label">암호 분실시 연락처</label>
         <div class="cols-sm-10">
           <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-            <input type="email" class="form-control" name="email" formControlName="email" placeholder="Enter your Email" required/>
+            <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+            <input type="email" class="form-control" name="email" formControlName="email" placeholder="Enter your Email" required max="30" min="6"/>
           </div>
         </div>
       </div>
