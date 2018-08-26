@@ -7,6 +7,7 @@ const routes : Routes = [
     {path : '', component : HomeComponent},
     {path : 'schedule', loadChildren : '../schedule.module#ScheduleModule'},
     {path : 'user', loadChildren : '../user.module#UserModule'},
+    {path : 'err', component : ErrorHandleComponent},
     {path : '**', component : NotfoundComponent}
 ]
 

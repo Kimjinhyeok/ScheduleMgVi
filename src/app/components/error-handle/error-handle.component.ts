@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-error-handle',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorHandleComponent implements OnInit {
 
-  constructor() { }
+  private errorName : string;
+  private errorExplain : string;
+  
+  constructor(router : ActivatedRoute) {
+    this.errorName = router.snapshot.paramMap.get('errorName');
+    this.errorExplain = router.snapshot.paramMap.get('errorExplain');
+  }
 
   ngOnInit() {
   }
