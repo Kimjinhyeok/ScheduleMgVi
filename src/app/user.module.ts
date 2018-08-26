@@ -6,6 +6,8 @@ import { HttpModule } from "@angular/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { AuthService } from "./services/auth.service";
+import { UserViewComponent } from './components/user-view/user-view.component';
+import { UserService } from "./services/user.service";
 
 @NgModule({
     imports : [
@@ -17,9 +19,11 @@ import { AuthService } from "./services/auth.service";
     declarations : [
         UserRegisterMainComponent,
         UserLoginComponent,
+        UserViewComponent
     ],
     providers : [
-        AuthService
+        AuthService,
+        UserService
     ]
 })
 

@@ -1,7 +1,9 @@
 import { Component, OnInit, Directive } from '@angular/core';
-import { FormGroup, NG_VALIDATORS, FormControl, Validators } from '@angular/forms';
+import { FormGroup, NG_VALIDATORS, FormControl, Validators, AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-register-main',
@@ -21,7 +23,10 @@ export class UserRegisterMainComponent implements OnInit {
 
     this.formModel = new FormGroup({
       'type' : new FormControl('privacy'),
-      'name' : new FormControl(),
+      'name' : new FormControl(null,[
+        Validators.max(20), Validators.minLength(2)
+      ]
+        ,this.existingEmailValidator(this.userService)),
       'passwordsGroup' : new FormGroup({
         'pw' : new FormControl(),
         'confirm' : new FormControl()
@@ -81,5 +86,13 @@ export class UserRegisterMainComponent implements OnInit {
     return valid ? null : { equal : true };
   }
 
-}
+  existingEmailValidator(userService: UserService): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      return userService.checkDuplicationID(control.value).pipe(
+       map( res => {
+        return res ? null : {duplicated : true};
+      })
+      );
+    };
+  } 
 }
