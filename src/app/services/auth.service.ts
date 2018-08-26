@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { throwError, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -7,6 +7,8 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+
+  @Output() isLogin : EventEmitter<any> = new EventEmitter();
 
   private URL : string = "http://localhost:3000/auth/";
   constructor(private http : Http) { }
@@ -24,5 +26,16 @@ export class AuthService {
         return throwError(errMessage);
       })
     )
+  }
+
+  userLogined(){
+    this.isLogin.emit(true);
+  }
+
+  userLogouted(){
+    this.isLogin.emit(false);
+  }
+  getEmittedValue(){
+    return this.isLogin;
   }
 }

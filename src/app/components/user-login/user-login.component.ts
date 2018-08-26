@@ -33,7 +33,9 @@ export class UserLoginComponent implements OnInit {
         if (res != null) {
           sessionStorage.setItem("id", res);
           sessionStorage.setItem("name", name);
+          this.authService.userLogined();
           this.route.navigate(['/']);
+
         }
       },
       (err) => {

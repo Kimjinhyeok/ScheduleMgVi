@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { isUndefined } from 'util';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navi',
@@ -9,21 +10,32 @@ import { isUndefined } from 'util';
 export class NaviComponent implements OnInit {
 
   private isLogin : boolean;
-  constructor() { 
+  constructor(private authService : AuthService) { 
     this.isLogin = false;
   }
 
   ngOnInit() {
-    var userID = sessionStorage.getItem('id');
-    if(userID){
-      this.isLogin = true;
-    }
+    this.changingLoginState();
   }
 
   logout(){
     if(sessionStorage.getItem('id')){
       sessionStorage.clear();
-      this.isLogin = false;
+      this.authService.userLogouted();
     }
+  }
+
+  changingLoginState(){
+    this.authService.getEmittedValue().subscribe(
+      is => {
+        this.isLogin = is;
+      },
+      err =>{
+
+      },
+      () => {
+        this.changingLoginState();
+      }
+    )
   }
 }

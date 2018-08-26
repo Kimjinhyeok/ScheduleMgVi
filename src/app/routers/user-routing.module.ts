@@ -6,7 +6,6 @@ import { UserViewComponent } from "../components/user-view/user-view.component";
 
 const userRoutes : Routes = [
     {path : 'register', component : UserRegisterMainComponent},
-    {path : 'login', component : UserLoginComponent},
     {path : 'info', component : UserViewComponent}
 ]
 
