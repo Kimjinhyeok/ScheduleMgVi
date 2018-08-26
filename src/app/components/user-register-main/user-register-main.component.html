@@ -26,7 +26,7 @@
         <div class="cols-sm-10">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" formControlName="name" placeholder="Enter your Name" required max="12" min="2"/>
+            <input type="text" class="form-control" name="name" formControlName="name" (blur)="chckDuplicateionID()" placeholder="Enter your Name" required max="12" min="2"/>
           </div>
           <span [hidden]="!formModel.hasError('isDuplicated', 'name')">중복된 닉네임입니다.</span>
         </div>

@@ -25,8 +25,7 @@ export class UserRegisterMainComponent implements OnInit {
       'type' : new FormControl('privacy'),
       'name' : new FormControl(null,[
         Validators.max(20), Validators.minLength(2)
-      ]
-        ,this.existingEmailValidator(this.userService)),
+      ]),
       'passwordsGroup' : new FormGroup({
         'pw' : new FormControl(),
         'confirm' : new FormControl()
@@ -66,18 +65,17 @@ export class UserRegisterMainComponent implements OnInit {
     }
   }
 
-  // checkDuplcationID(){
-  //   var name = this.formModel.value.name;
+  checkDuplcationID(){
+    var name = this.formModel.value.name;
 
-  //   this.userService.checkDuplicationID(name).subscribe(
-  //     (isDuplicated) => {
-  //       this.warning.isDuplicated = true;
-  //     },
-  //     (err) => {
-  //       this.warning.isDuplicated = false;
-  //     }
-  //   );
-  // }
+    this.userService.checkDuplicationID(name).subscribe(
+      (isDuplicated) => {
+        this.formModel.get('name').setErrors({isDuplicated : {isDuplicated : true}})
+      },
+      (err) => {
+      }
+    );
+  }
   
   equalValidator({value} : FormGroup) : {[key : string] : any}{
     
