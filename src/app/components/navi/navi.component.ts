@@ -20,4 +20,10 @@ export class NaviComponent implements OnInit {
     }
   }
 
+  logout(){
+    if(sessionStorage.getItem('id')){
+      sessionStorage.clear();
+      this.isLogin = false;
+    }
+  }
 }

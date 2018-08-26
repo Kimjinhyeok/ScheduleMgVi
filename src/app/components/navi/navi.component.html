@@ -12,7 +12,11 @@
 
 		<!-- 네비게이션 링크 -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarSupportedContent">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" *ngIf="!isLogin">
+					<li><a routerLink='./user/register'>회원가입</a></li>
+					<li><a routerLink="./user/login">로그인</a></li>
+			</ul>
+			<ul class="nav navbar-nav" *ngIf="isLogin">
 				<li><a routerLink='./schedule'>일정</a></li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">일정관리
@@ -22,8 +26,8 @@
 						<li><a routerLink='./schedule/manage'>일정변경</a></li>
 					</ul>
 				</li>
-				<li *ngIf="!isLogin"><a routerLink='./user/register'>회원가입</a></li>
-				<li *ngIf="!isLogin"><a routerLink="./user/login">로그인</a></li>
+				<li><a routerLink='./user/info'>내 정보</a></li>
+				<li><a (onClick)="logout()">로그아웃</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
