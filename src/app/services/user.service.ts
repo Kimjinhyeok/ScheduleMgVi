@@ -26,4 +26,12 @@ export class UserService {
   checkDuplicationID(name) : Observable<any>{
     return this.http.get(`${this.URL}/${name}`);
   }
+
+  getUserInfomation(id) : Observable<any>{
+    return this.http.get(`${this.URL}/${id}`).pipe(
+      map( (rs) => {
+        rs.json().data;
+      })
+    )
+  }
 }

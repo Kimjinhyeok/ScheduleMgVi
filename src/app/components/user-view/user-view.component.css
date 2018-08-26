@@ -1,0 +1,76 @@
+.schedule-state-container{
+    width: 100%;
+    text-align: center;
+    margin : 10px 0;
+}
+.schedule-registered{
+    width: 100%;
+}
+.schedule-state-sub{
+    margin-top: 1em;
+}
+.schedule-state-sub::after{
+    clear: both;
+}
+
+.schedule-state-sub-child{
+    display: inline-block;
+    width: 50%;
+}
+
+.state-title,
+.state-count{
+    margin: 0 auto;
+    padding: 5px;
+    font-weight: bold;
+}
+.state-title{
+    font-size: 1.5em;
+}
+.state-count{
+    font-size: 1.3em;
+    color: #494949;
+    background-color: #F9F9F9;
+    line-height: 2.0em;
+    vertical-align: middle;
+    border-top: 2px solid white;
+}
+
+.box{
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+}
+
+.user-out{
+    margin-top: 3em;
+    font-size: 1.5em;
+}
+
+button{
+    margin: 0 5px;
+    width: 20%;
+    height: 2em;
+    border-radius: 5px;
+}
+
+.user-confirm{
+    font-size: 1.3em;
+    color: #5f5f5f;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+.confirm-password{
+    margin: 0 auto;
+    width: 100%;
+    height: 3em;
+    font-size: 1.3em;
+    text-align: center;
+}
+.confirm-password input{
+    margin: 10px auto;
+    width: 50%;
+}
