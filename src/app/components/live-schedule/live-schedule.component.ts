@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ScheduleService } from '../../services/schedule.service';
+import { ScheduleManagerService } from '../../services/schedule-manage.service';
 import { interval } from '../../../../node_modules/rxjs';
 import { map } from '../../../../node_modules/rxjs/operators';
 import { ScheduleVO, PlanVO } from '../schedule-write/schedule-write.component';
@@ -28,7 +28,7 @@ export class LiveScheduleComponent implements OnInit {
   leftHour: number = null;
   leftMin: number = null;
 
-  constructor(private scheduleService: ScheduleService, private lm : LoginManagerService) {
+  constructor(private scheduleService: ScheduleManagerService, private lm : LoginManagerService) {
     this.now = new Date();
     this.scheduleArray = new Array<ScheduleVO>();
     this.adaptedScheduleNum = 0;

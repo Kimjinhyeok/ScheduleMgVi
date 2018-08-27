@@ -71,4 +71,16 @@ export class ScheduleManagerService {
       )
     )
   }
+  
+  getActivateSchedules(id : string) : Observable<any>{
+    return this.http.get(`${this.URL}/activate/${id}`)
+    .pipe(map(
+      (res, idx) => {
+        return res.json();
+      },
+      (err) => {
+        throw Error(err);
+      }
+    ))
+  }
 }

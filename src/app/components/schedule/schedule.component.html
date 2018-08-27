@@ -1,6 +1,6 @@
 <div class="row" *ngIf="!this.loaderService.status.value">
   <div class="sc_head">
-    <h1>여름수양회 시간표</h1>
+    <h1>{{name}}님의 시간표</h1>
   </div>
   <div style="text-align: center;">
     <div class="col-md-4 col-lg-4" *ngFor="let schedule of this.schedules">

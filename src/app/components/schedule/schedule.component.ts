@@ -4,6 +4,7 @@ import { isUndefined } from 'util';
 import { ScheduleManagerService } from '../../services/schedule-manage.service';
 import { ScheduleVO } from '../schedule-write/schedule-write.component';
 import { LoaderService } from '../../services/loader.service';
+import { LoginManagerService } from '../../services/login-manager.service';
 
 @Component({
   selector: 'app-schedule',
@@ -15,23 +16,23 @@ import { LoaderService } from '../../services/loader.service';
 })
 export class ScheduleComponent implements OnInit {
 
-  private setDay;
+  private user;
+  private id;
   private schedules;
 
-  constructor(route : ActivatedRoute, private scheduleService : ScheduleManagerService
+  constructor(private scheduleService : ScheduleManagerService, lm : LoginManagerService
     , private loaderService : LoaderService
   ) {
-    route.queryParams.subscribe(
-      params =>{
-        var recvDate = params['setDay'];
-        if(recvDate == null || isUndefined(recvDate)) this.setDay = new Date();
-        else this.setDay = new Date(recvDate);
-    })
+    if(lm.checkLogin()){
+      var {id, name} = lm.proveLogin();
+      this.user = name;
+      this.id = id;
+    }
   }
 
   ngOnInit() {
     this.loaderService.display(true);
-    this.scheduleService.getSchedules().subscribe(
+    this.scheduleService.getActivateSchedules(this.id).subscribe(
       data => {
         this.schedules = data.schedules.value as Array<ScheduleVO>;
       },

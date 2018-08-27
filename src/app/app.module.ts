@@ -12,7 +12,6 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { ErrorHandleComponent } from './components/error-handle/error-handle.component';
 import { NotfoundComponent } from './components/pagenotfound/pagenotfound.component';
-import { AuthService } from './services/auth.service';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginManagerService } from './services/login-manager.service';

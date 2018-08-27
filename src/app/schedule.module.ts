@@ -3,11 +3,12 @@ import { ScheduleComponent } from "./components/schedule/schedule.component";
 import { ScheduleWriteComponent } from "./components/schedule-write/schedule-write.component";
 import { ScheduleManageComponent } from "./components/schedule-manage/schedule-manage.component";
 import { ScheduleEditComponent } from "./components/schedule-edit/schedule-edit.component";
-import { ScheduleService } from "./services/schedule.service";
 import { HttpModule } from "@angular/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ScheduleRoutingModule } from "./routers/schedule-routing.module";
 import { CommonModule } from "@angular/common";
+import { LoginManagerService } from "./services/login-manager.service";
+import { ScheduleManagerService } from "./services/schedule-manage.service";
 
 @NgModule({
     imports : [
@@ -24,7 +25,8 @@ import { CommonModule } from "@angular/common";
         ScheduleEditComponent
     ],
     providers : [
-        ScheduleService
+        ScheduleManagerService,
+        LoginManagerService
     ]
 })
 

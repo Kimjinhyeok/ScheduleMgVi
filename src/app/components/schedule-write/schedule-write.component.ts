@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms'
 import { ScheduleManagerService } from '../../services/schedule-manage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-write-schedule',
@@ -12,7 +13,7 @@ export class ScheduleWriteComponent implements OnInit {
   formModel : FormGroup;
   items : FormArray;
 
-  constructor(private formBuilder : FormBuilder, private scheduleService : ScheduleManagerService) {
+  constructor(private formBuilder : FormBuilder, private scheduleService : ScheduleManagerService, private router : Router) {
     this.formModel = this.formBuilder.group({
       targetDay : [null, Validators.required],
       descript : [null, Validators.required],
@@ -21,7 +22,7 @@ export class ScheduleWriteComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.checkLogin();
   }
 
   createSchedule() : FormGroup{
@@ -44,6 +45,8 @@ export class ScheduleWriteComponent implements OnInit {
     }else{
       console.log('what the....'); return;
     }
+    this.checkLogin();
+    
     var formValue = this.formModel.value;
     var scheduleVO = new ScheduleVO(formValue);
 
@@ -63,6 +66,7 @@ export class ScheduleWriteComponent implements OnInit {
     });
 
     scheduleVO.setPlans(planArray);
+    scheduleVO.setID(sessionStorage.getItem('id'));
     
     this.scheduleService.sendNewSchedule(scheduleVO).subscribe(
       data => {
@@ -72,6 +76,15 @@ export class ScheduleWriteComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  checkLogin(){
+    if(!sessionStorage.getItem('id')){
+      this.reTryLogin();
+    }
+  }
+  reTryLogin(){
+    this.router.navigate(['/login']);
   }
 }
 
@@ -102,6 +115,9 @@ export class ScheduleVO{
     this.plans.push(new PlanVO(time, plan))
   }
 
+  setID(id : string){
+    this.id = id;
+  }
   getPlans() : Array<PlanVO>{return this.plans}
 
   getID(){
