@@ -8,8 +8,6 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class AuthService {
 
-  @Output() isLogin : EventEmitter<any> = new EventEmitter();
-
   private URL : string = "http://localhost:3000/auth/";
   constructor(private http : Http) { }
 
@@ -28,14 +26,4 @@ export class AuthService {
     )
   }
 
-  userLogined(){
-    this.isLogin.emit(true);
-  }
-
-  userLogouted(){
-    this.isLogin.emit(false);
-  }
-  getEmittedValue(){
-    return this.isLogin;
-  }
 }

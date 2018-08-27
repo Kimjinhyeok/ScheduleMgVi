@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { LoginManagerService } from '../../services/login-manager.service';
 
 @Component({
   selector: 'app-user-login',
@@ -15,7 +16,7 @@ export class UserLoginComponent implements OnInit {
 
   private errMessage = null;
   private formModel: FormGroup;
-  constructor(private authService: AuthService, private route: Router) {
+  constructor(private authService: AuthService, private route: Router, private lm : LoginManagerService) {
     this.formModel = new FormGroup({
       name: new FormControl(),
       pw: new FormControl()
@@ -33,9 +34,8 @@ export class UserLoginComponent implements OnInit {
         if (res != null) {
           sessionStorage.setItem("id", res);
           sessionStorage.setItem("name", name);
-          this.authService.userLogined();
+          this.lm.userLogined();
           this.route.navigate(['/']);
-
         }
       },
       (err) => {

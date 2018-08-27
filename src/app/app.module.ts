@@ -15,6 +15,7 @@ import { NotfoundComponent } from './components/pagenotfound/pagenotfound.compon
 import { AuthService } from './services/auth.service';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginManagerService } from './services/login-manager.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     })
   ],
   providers: [
-    AuthService
+    LoginManagerService
   ],
   bootstrap: [AppComponent]
 })

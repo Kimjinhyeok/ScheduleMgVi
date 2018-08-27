@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginManagerService } from '../../services/login-manager.service';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  title : string = 'myAngularGoogleMaps';
-  lat : number = 36.75473320561448;
-  lng : number = 126.12905910044049;
-  zoom : number = 12;
-  constructor() { }
+  private isLogin = false;
+  constructor(private lm : LoginManagerService) { }
 
   ngOnInit() {
-  }
-
-  onChooseLocation(event){
-    console.log(event);
+    if(this.lm.checkLogin()){
+      this.isLogin = true;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { ScheduleService } from '../../services/schedule.service';
 import { interval } from '../../../../node_modules/rxjs';
 import { map } from '../../../../node_modules/rxjs/operators';
 import { ScheduleVO, PlanVO } from '../schedule-write/schedule-write.component';
+import { LoginManagerService } from '../../services/login-manager.service';
 
 @Component({
   selector: 'app-live-schedule',
@@ -27,7 +28,7 @@ export class LiveScheduleComponent implements OnInit {
   leftHour: number = null;
   leftMin: number = null;
 
-  constructor(private scheduleService: ScheduleService) {
+  constructor(private scheduleService: ScheduleService, private lm : LoginManagerService) {
     this.now = new Date();
     this.scheduleArray = new Array<ScheduleVO>();
     this.adaptedScheduleNum = 0;
@@ -35,7 +36,13 @@ export class LiveScheduleComponent implements OnInit {
 
   ngOnInit() {
     //get Schedules from server
-    this.scheduleService.getActivateSchedules().subscribe(
+    if(!this.lm.checkLogin()){
+      this.lm.moveToLogin();
+    }
+
+    var {id} = this.lm.proveLogin();
+
+    this.scheduleService.getActivateSchedules(id).subscribe(
       res => {
         if (res.data.length > 0) {
           this.activate = true;
@@ -242,6 +249,12 @@ export class LiveScheduleComponent implements OnInit {
     source.setMinutes(Number(times[1]));
 
     return source;
+  }
+
+  checkLogined(){
+    if(!sessionStorage.getItem('id')){
+      
+    }
   }
 }
 

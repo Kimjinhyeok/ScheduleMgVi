@@ -1,8 +1,11 @@
 <div class="home">
-  <div>
+  <div *ngIf="isLogin">
     <app-live-schedule></app-live-schedule>
   </div>
-
+  <div *ngIf="!isLogin">
+    <h1>스케줄 관리 웹입니다.</h1>
+    <p>회원가입 후 사용이 가능하십니다. ^^</p>
+  </div>
   <!-- 
   <div class="row" style="width: 100%;">
     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="onChooseLocation($event)">
