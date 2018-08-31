@@ -60,7 +60,7 @@ export class LiveScheduleComponent implements OnInit {
       },
       err => {
         console.error("Fail to load data" + err);
-      }
+      },
     );
   }
 
