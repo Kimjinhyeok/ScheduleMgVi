@@ -4,7 +4,7 @@ import { isUndefined } from 'util';
 import { ScheduleManagerService } from '../../services/schedule-manage.service';
 import { ScheduleVO } from '../schedule-write/schedule-write.component';
 import { LoaderService } from '../../services/loader.service';
-import { LoginManagerService } from '../../services/login-manager.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-schedule',
@@ -20,11 +20,11 @@ export class ScheduleComponent implements OnInit {
   private id;
   private schedules;
 
-  constructor(private scheduleService : ScheduleManagerService, lm : LoginManagerService
+  constructor(private scheduleService : ScheduleManagerService, auth : AuthService
     , private loaderService : LoaderService
   ) {
-    if(lm.checkLogin()){
-      var {id, name} = lm.proveLogin();
+    if(auth.isAuthenticated()){
+      var {id, name} = auth.proveLogin();
       this.user = name;
       this.id = id;
     }

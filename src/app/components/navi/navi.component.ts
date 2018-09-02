@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { isUndefined } from 'util';
 import { AuthService } from '../../services/auth.service';
-import { LoginManagerService } from '../../services/login-manager.service';
 
 @Component({
   selector: 'app-navi',
@@ -11,12 +10,12 @@ import { LoginManagerService } from '../../services/login-manager.service';
 export class NaviComponent implements OnInit {
 
   private isLogin : boolean;
-  constructor(private lm : LoginManagerService) { 
+  constructor(private auth : AuthService) { 
     this.isLogin = false;
   }
 
   ngOnInit() {
-    if(this.lm.checkLogin()){
+    if(this.auth.isAuthenticated()){
       this.isLogin = true;
     }else{
       this.changingLoginState();
@@ -24,14 +23,14 @@ export class NaviComponent implements OnInit {
   }
 
   logout(){
-    if(this.lm.checkLogin()){
+    if(this.auth.isAuthenticated()){
       sessionStorage.clear();
-      this.lm.userLogouted();
+      this.auth.userLogouted();
     }
   }
 
   changingLoginState(){
-    this.lm.getEmittedValue().subscribe(
+    this.auth.getEmittedValue().subscribe(
       is => {
         this.isLogin = is;
       },

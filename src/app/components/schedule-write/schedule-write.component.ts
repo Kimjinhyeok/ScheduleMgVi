@@ -22,7 +22,7 @@ export class ScheduleWriteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkLogin();
+    this.isAuthenticated();
   }
 
   createSchedule() : FormGroup{
@@ -45,7 +45,7 @@ export class ScheduleWriteComponent implements OnInit {
     }else{
       console.log('what the....'); return;
     }
-    this.checkLogin();
+    this.isAuthenticated();
     
     var formValue = this.formModel.value;
     var scheduleVO = new ScheduleVO(formValue);
@@ -78,7 +78,7 @@ export class ScheduleWriteComponent implements OnInit {
     );
   }
 
-  checkLogin(){
+  isAuthenticated(){
     if(!sessionStorage.getItem('id')){
       this.reTryLogin();
     }

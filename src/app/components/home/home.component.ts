@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginManagerService } from '../../services/login-manager.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +9,10 @@ import { LoginManagerService } from '../../services/login-manager.service';
 export class HomeComponent implements OnInit {
 
   private isLogin = false;
-  constructor(private lm : LoginManagerService) { }
+  constructor(private auth : AuthService) { }
 
   ngOnInit() {
-    if(this.lm.checkLogin()){
+    if(this.auth.isAuthenticated()){
       this.isLogin = true;
     }
   }

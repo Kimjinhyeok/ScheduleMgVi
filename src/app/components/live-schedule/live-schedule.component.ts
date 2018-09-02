@@ -3,7 +3,7 @@ import { ScheduleManagerService } from '../../services/schedule-manage.service';
 import { interval } from '../../../../node_modules/rxjs';
 import { map } from '../../../../node_modules/rxjs/operators';
 import { ScheduleVO, PlanVO } from '../schedule-write/schedule-write.component';
-import { LoginManagerService } from '../../services/login-manager.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-live-schedule',
@@ -28,7 +28,7 @@ export class LiveScheduleComponent implements OnInit {
   leftHour: number = null;
   leftMin: number = null;
 
-  constructor(private scheduleService: ScheduleManagerService, private lm : LoginManagerService) {
+  constructor(private scheduleService: ScheduleManagerService, private auth : AuthService) {
     this.now = new Date();
     this.scheduleArray = new Array<ScheduleVO>();
     this.adaptedScheduleNum = 0;
@@ -36,11 +36,11 @@ export class LiveScheduleComponent implements OnInit {
 
   ngOnInit() {
     //get Schedules from server
-    if(!this.lm.checkLogin()){
-      this.lm.moveToLogin();
+    if(!this.auth.isAuthenticated()){
+      this.auth.moveToLogin();
     }
 
-    var {id} = this.lm.proveLogin();
+    var {id} = this.auth.proveLogin();
 
     this.scheduleService.getActivateSchedules(id).subscribe(
       res => {
@@ -251,7 +251,7 @@ export class LiveScheduleComponent implements OnInit {
     return source;
   }
 
-  checkLogined(){
+  isAuthenticateded(){
     if(!sessionStorage.getItem('id')){
       
     }

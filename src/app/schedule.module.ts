@@ -7,8 +7,8 @@ import { HttpModule } from "@angular/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ScheduleRoutingModule } from "./routers/schedule-routing.module";
 import { CommonModule } from "@angular/common";
-import { LoginManagerService } from "./services/login-manager.service";
 import { ScheduleManagerService } from "./services/schedule-manage.service";
+import { AuthService } from "./services/auth.service";
 
 @NgModule({
     imports : [
@@ -26,7 +26,7 @@ import { ScheduleManagerService } from "./services/schedule-manage.service";
     ],
     providers : [
         ScheduleManagerService,
-        LoginManagerService
+        AuthService
     ]
 })
 

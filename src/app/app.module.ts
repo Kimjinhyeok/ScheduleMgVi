@@ -14,7 +14,7 @@ import { ErrorHandleComponent } from './components/error-handle/error-handle.com
 import { NotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginManagerService } from './services/login-manager.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { LoginManagerService } from './services/login-manager.service';
     })
   ],
   providers: [
-    LoginManagerService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
