@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,16 @@ import { throwError, Observable } from 'rxjs';
 export class UserService {
 
   private URL = "http://localhost:3000/users";
-  constructor(private http : Http) { }
+  constructor(private http : HttpClient) { }
 
   userRegister(formValue) : Observable<any>{
     return this.http.put(this.URL,{
       formValue
     }).pipe(map(
       (res) => {
-        return res.json().result;
+        res;
       }),catchError((err)=>{
-        return throwError(err.json().message);
+        return throwError(err.message);
       })
     )
   }
@@ -30,7 +31,7 @@ export class UserService {
   getUserInfomation(id) : Observable<any>{
     return this.http.get(`${this.URL}/${id}`).pipe(
       map( (rs) => {
-        rs.json().data;
+        rs;
       })
     )
   }

@@ -3,13 +3,14 @@ import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ScheduleVO } from '../components/schedule-write/schedule-write.component';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleManagerService {
 
   private URL = "http://localhost:3000/schedule";
-  constructor(private http : Http) { }
+  constructor(private http : HttpClient) { }
 
   sendNewSchedule(schedule) : Observable<any>{
     return this.http.put(this.URL,{
@@ -17,7 +18,6 @@ export class ScheduleManagerService {
     }).pipe(
       map(
         (data)=>{
-        data.json();
       },
       err => {
         throw Error('Error while send schedule : ' + err)
@@ -28,8 +28,8 @@ export class ScheduleManagerService {
   getRecentSchedule() : Observable<any>{
     return this.http.get(this.URL).pipe(
       map((res) => {
-        console.log("service : " + res.json());
-        return res.json();
+        console.log("service : " + res);
+        res;
       },(err) => {
         throw Error('Error while get Recent schedule' + err.message);
       })
@@ -39,7 +39,7 @@ export class ScheduleManagerService {
   getSchedules() : Observable<any>{
     return this.http.get(this.URL+"/all").pipe(
       map( res => {
-        return res.json() as Array<ScheduleVO>;
+        return res as Array<ScheduleVO>;
       }, err => {
         throw Error('Error while get All Schedules');
       })
@@ -51,7 +51,7 @@ export class ScheduleManagerService {
       params : schedule
     }).pipe(map( 
       (res : any) => {
-        return res.json();
+        return res;
       },
       (err) => {
         throw Error(err);
@@ -63,7 +63,7 @@ export class ScheduleManagerService {
     return this.http.delete(`${this.URL}/${id}`).pipe(
       map(
         (res) => {
-          return res.json();
+          return res;
         },
         (err) => {
           throw Error(err);
@@ -76,7 +76,7 @@ export class ScheduleManagerService {
     return this.http.get(`${this.URL}/activate/${id}`)
     .pipe(map(
       (res, idx) => {
-        return res.json();
+        return res;
       },
       (err) => {
         throw Error(err);

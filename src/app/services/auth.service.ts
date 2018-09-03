@@ -4,6 +4,7 @@ import { throwError, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,31 +17,23 @@ export class AuthService {
   private URL: string = "http://localhost:3000/auth/";
   private jwtHelper : JwtHelperService = null;
 
-  constructor(private http: Http, private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
     this.jwtHelper = new JwtHelperService();
   }
 
   userLogin(name: string, password: string): Observable<any> {
-    return this.http.post(this.URL, {
+    return this.http.post<any>(this.URL, {
       name: name,
       password: password
     }).pipe(map(
       (res) => {
-        return res.json().token;
+        return res.token;
       }),
       catchError(err => {
-        var errMessage = err.json().message;
+        var errMessage = err.message;
         return throwError(errMessage);
       })
     )
-  }
-
-  proveLogin(): { id: string, name: string } {
-    if (this.isAuthenticated()) {
-      let id = sessionStorage.getItem('id');
-      let name = sessionStorage.getItem('name');
-      return { id, name };
-    }
   }
 
   moveToLogin() {
