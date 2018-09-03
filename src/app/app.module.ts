@@ -8,13 +8,14 @@ import { AppRoutingModule } from './routers/app.routing';
 import { HomeComponent } from './components/home/home.component';
 import { AgmCoreModule } from '@agm/core';
 import { LiveScheduleComponent } from './components/live-schedule/live-schedule.component';
-import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { ErrorHandleComponent } from './components/error-handle/error-handle.component';
 import { NotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AddTokenInterceptor } from './guard/AddTokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,14 @@ import { AuthService } from './services/auth.service';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey : 'AIzaSyB5NG0YrVVjUxMVJ8JihnZYhV7ClcIPiss'
     })
   ],
   providers: [
-    AuthService
+    AuthService,
+    {provide : HTTP_INTERCEPTORS, useClass : AddTokenInterceptor, multi : true}
   ],
   bootstrap: [AppComponent]
 })
