@@ -40,7 +40,7 @@ export class LiveScheduleComponent implements OnInit {
       this.auth.moveToLogin();
     }
 
-    var {id} = this.auth.proveLogin();
+    var id = this.auth.getUserid();
 
     this.scheduleService.getActivateSchedules(id).subscribe(
       res => {
@@ -59,7 +59,7 @@ export class LiveScheduleComponent implements OnInit {
         }
       },
       err => {
-        console.error("Fail to load data" + err);
+        console.error("Fail to load data" + err.message);
       },
     );
   }

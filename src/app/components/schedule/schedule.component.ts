@@ -24,9 +24,8 @@ export class ScheduleComponent implements OnInit {
     , private loaderService : LoaderService
   ) {
     if(auth.isAuthenticated()){
-      var {id, name} = auth.proveLogin();
-      this.user = name;
-      this.id = id;
+      this.user = auth.getUserName();
+      this.id = auth.getUserid();
     }
   }
 
