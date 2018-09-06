@@ -13,11 +13,11 @@ export class UserService {
   constructor(private http : HttpClient) { }
 
   userRegister(formValue) : Observable<any>{
-    return this.http.put(this.URL,{
+    return this.http.put<any>(this.URL,{
       formValue
     }).pipe(map(
       (res) => {
-        res;
+        res.result;
       }),catchError((err)=>{
         return throwError(err.message);
       })

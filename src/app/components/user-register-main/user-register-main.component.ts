@@ -39,8 +39,14 @@ export class UserRegisterMainComponent implements OnInit {
 
   onRegister(){
     event.preventDefault();
-    console.log(this.formModel.valid);/*
-    this.userService.userRegister(this.formModel.value)
+    console.log(this.formModel.valid);
+    var userInfo = new Object({
+      type : this.formModel.value.type,
+      name : this.formModel.value.name,
+      password : this.formModel.value.passwordsGroup.pw,
+      email : this.formModel.value.email
+    });
+    this.userService.userRegister(userInfo)
       .subscribe(
         (result) => {
           if(result){
@@ -50,7 +56,7 @@ export class UserRegisterMainComponent implements OnInit {
         (err) => {
           console.error(err);
         }
-      )*/
+      )
   }
 
   checkEqualPasswords(){
